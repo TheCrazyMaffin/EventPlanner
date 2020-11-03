@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing page</title>
+    <% if(req.query.design == "light"){ %>
+        <%- include('design/light') %>
+    <% }else{ %>
+        <%- include('design/dark') %>
+    <% } %>
+</head>
+<body>
+    <%- include('navbar') %>
+     Params: <%= JSON.stringify(req.query) %>
+</body>
+</html>

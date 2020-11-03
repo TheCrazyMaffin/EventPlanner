@@ -1,3 +1,5 @@
+'use strict';
+
 //#region Imports
 const http = require("http")
 const express = require("express")
@@ -5,7 +7,25 @@ const path = require("path")
 require("dotenv").config()
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
+const i18n = require('i18n')
 //#endregion
+
+//Set up i18n
+i18n.configure({
+    locales: ['en', 'de'],
+    directory: path.join(__dirname, "locales"),
+    defaultLocale: 'en',
+    retryInDefaultLocale: true,
+    queryParameter: 'lang', //Language can be changed by adding ?lang=xy
+    autoReload: true,
+    updateFiles: true,
+    syncFiles: true,
+    fallbacks: {
+        //https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
+        'de-*': 'de',
+        'en-*': 'en'
+    },
+})
 
 //Initialize app
 let app = express();
@@ -17,16 +37,18 @@ passport.use(new LocalStrategy((username, password, done) => {
     //done(null, false) to let login fail
 }))
 
-//Set up EJS
+//Set up EJS. Tell it what to use (path and engine)
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs")
 
-//Set a port
+//Set a port. Used by the webserver
 app.set('port', process.env.PORT)
 
+//Enable json and urlencoded support
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-app.use()
+//Enable i18n based on accept-language header
+app.use(i18n.init)
 //Serve static assets such as images, stylesheets and javascript
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -57,6 +79,6 @@ server.on('error', (error) => {
 server.on('listening', () => {
     const addr = server.address();
     //Get either a pipe or port to display
-    var binding = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
+    var binding = typeof addr === `string` ? `pipe ${addr}` : `port ${addr.port}`
     console.log(`Listening on ${binding}`)
 })

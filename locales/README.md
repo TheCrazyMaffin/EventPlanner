@@ -1,0 +1,1 @@
+Use https://www.electronjs.org/apps/i18n-manager
