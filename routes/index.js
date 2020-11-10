@@ -9,4 +9,9 @@ router.get('/', function(req, res, next) {
   res.render('landing_page', {req: staticReq});
 });
 
+router.get('/dashboard', function(req, res, next) {
+  let staticReq = req;
+  res.render('dashboard', {req: staticReq})
+})
+
 module.exports = router;

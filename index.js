@@ -8,6 +8,7 @@ require("dotenv").config()
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
 const i18n = require('i18n')
+const cookieSession = require("cookie-session")
 //#endregion
 
 //Set up i18n
@@ -51,6 +52,13 @@ app.use(express.urlencoded({ extended: false }))
 app.use(i18n.init)
 //Serve static assets such as images, stylesheets and javascript
 app.use(express.static(path.join(__dirname, 'public')))
+
+//Cookies!
+app.use(cookieSession({
+    name: "eventPlanner",
+    secret: "u98uhiu9876z98sdzf987tg32w987gr9s87dzf",
+    maxAge: 7 * 24 * 60 * 60 * 1000
+}))
 
 //#region Routes
 const eventsRouter = require("./routes/events")

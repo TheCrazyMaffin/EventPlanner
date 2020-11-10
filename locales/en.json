@@ -1,4 +1,6 @@
 {
-  "HelloWorld": "Hello World!",
-  "bye": "Byee!"
+  "siteTitle": "Schulsanitätsdienst der Ellentalgymnasien",
+  "landingPageTitle": "Home",
+  "navbarHome": "Home",
+  "navbarDashboard": "Dashboard"
 }
