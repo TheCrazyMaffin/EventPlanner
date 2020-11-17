@@ -53,11 +53,11 @@ app.use(i18n.init)
 //Serve static assets such as images, stylesheets and javascript
 app.use(express.static(path.join(__dirname, 'public')))
 
-//Cookies!
+//Cookies! Changing the cookie secret invalidates old cookies.
 app.use(cookieSession({
     name: "eventPlanner",
-    secret: "u98uhiu9876z98sdzf987tg32w987gr9s87dzf",
-    maxAge: 7 * 24 * 60 * 60 * 1000
+    secret: process.env.COOKIE_SECRET,
+    maxAge: 7 * 24 * 60 * 60 * 1000 //7 days
 }))
 
 //#region Routes
@@ -81,7 +81,7 @@ let server = http.createServer(app)
 server.listen(process.env.PORT)
 
 server.on('error', (error) => {
-
+ console.error(error)
 })
 
 server.on('listening', () => {

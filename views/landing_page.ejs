@@ -12,8 +12,9 @@
 </head>
 <body>
     <%- include('navbar', { current: 1 }); %>
-    <script>
+    <script>//DEBUG
         console.log(JSON.parse("<%= JSON.stringify(req.query) %>"))
     </script>
+    <%- include('latest-embed'); %>
 </body>
 </html>
