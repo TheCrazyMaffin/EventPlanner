@@ -1,0 +1,59 @@
+<div class="container">
+    <% let cards = [
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+        {name: "Event title", image: "/images/example800x400-3.png", timestampStart: 1606227134893},
+    ]
+    %>
+    <% let chunk = 3 %> 
+    <% for( let i = 0; i < cards.length; i+=chunk) { %>
+        <div class="row">
+        <% let cardChunk = cards.slice(i, i+chunk) %>
+        <% for( let index = 0; index < cardChunk.length; index++ ) { %>
+            <div class="col-md">
+                <div class="card mb-3 mx-auto">
+                    <img class="card-img-top" src="<%= cardChunk[index].image %>">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="font-weight-bold"><%= cardChunk[index].name %></span>
+                            <span class="font-weight-light">on <%= Date(cardChunk[index].timestampStart).toString() %></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        </div>
+    <% } %>
+    <% for( let index = 0; index < 5; index++ ) { %>
+        
+                
+            
+    <% } %>
+</div>

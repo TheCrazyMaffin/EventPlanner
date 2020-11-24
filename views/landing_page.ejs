@@ -15,6 +15,12 @@
     <script>//DEBUG
         console.log(JSON.parse("<%= JSON.stringify(req.query) %>"))
     </script>
-    <%- include('latest-embed'); %>
+    <%- include('latest-embed', {latestEvents: [//DEBUG Actually receive data at some point
+        {name: "Event name 1", image: "/images/example800x400-1.png"},
+        {name: "Event name 2", image: "/images/example800x400-2.png"},
+        {name: "Event name 3", image: "/images/example800x400-3.png"}
+    ]}); %>
+    <br />
+    <%- include('event-list', {q: req.query}) %>
 </body>
 </html>
