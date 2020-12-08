@@ -1,0 +1,47 @@
+<%# 
+Event {
+    id: PK,
+    title: String,
+    description: String,
+    imageName: String, 
+    maximumAttendees: Integer,
+    hosts: Array[displayName: String]
+    dates: Array[date]
+}
+
+date {
+    timestampStart: timestamp,
+    timestampEnd: timestamp
+}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('header', {req, title: event.title}) %>
+</head>
+<body>
+    <%- include('navbar', { current: 0 }); %>
+    <div class="container">
+        <div class="row">
+            <div class="card mb-3 mx-auto">
+                <h3 class="card-header"><%= event.title %></h3>
+                <img src="/images/<%= event.imageName %>">
+                <div class="card-body">
+                    <p class="card-text"><%= event.description %></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Betreuer (i18n): </li>
+                    <li class="list-group-item">x von X Plätzen belegt</li>
+                    <li class="list-group-item">Wann? Dann dann und dann</li>
+                </ul>
+                <div class="card-body mx-auto">
+                        <button type="button" class="btn btn-success">Sign up</button>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

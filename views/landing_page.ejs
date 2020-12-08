@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= __("landingPageTitle") %></title>
-    <% if(req.query.design == "light"){ %>
-        <%- include('design/light') %>
-    <% }else{ %>
-        <%- include('design/dark') %>
-    <% } %>
+    <%- include('header', {req, title:  __("landingPageTitle"), cookies}) %>
 </head>
 <body>
     <%- include('navbar', { current: 1 }); %>
-    <script>//DEBUG
-        console.log(JSON.parse("<%= JSON.stringify(req.query) %>"))
-    </script>
     <%- include('latest-embed', {latestEvents: [//DEBUG Actually receive data at some point
         {name: "Event name 1", image: "/images/example800x400-1.png"},
         {name: "Event name 2", image: "/images/example800x400-2.png"},

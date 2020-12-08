@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= title %></title>
+<%
+    let design = "dark";
+    if(req.session.cookieAgreement){
+        if(req.query.design){
+            req.session.design = req.query.design;
+        }
+        if(!req.session.design){
+            req.session.design = "dark"
+        }
+        design = req.session.design
+    }
+%>
+<% if(design == "light"){ %>
+    <%- include('design/light') %>
+<% }else{ %>
+    <%- include('design/dark') %>
+<% } %>

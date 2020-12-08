@@ -21,6 +21,9 @@ i18n.configure({
     autoReload: true,
     updateFiles: true,
     syncFiles: true,
+    interpolation: {
+        escapeValue: false
+    },
     fallbacks: {
         //https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
         'de-*': 'de',
@@ -65,8 +68,9 @@ const eventsRouter = require("./routes/events")
 const usersRouter = require("./routes/users")
 const authRouter = require("./routes/auth")
 const indexRouter = require("./routes/index")
+const cookieRouter = require("./routes/cookies")
 
-
+app.use(cookieRouter)
 app.use("/", indexRouter)
 app.use("/events", eventsRouter)
 app.use("/users", usersRouter)

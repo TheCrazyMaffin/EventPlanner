@@ -2,5 +2,8 @@
   "siteTitle": "Schulsanitätsdienst der Ellentalgymnasien",
   "landingPageTitle": "Home",
   "navbarHome": "Home",
-  "navbarDashboard": "Dashboard"
+  "navbarDashboard": "Dashboard",
+  "cookiePageTitle": "Cookies",
+  "cookieMessage": "Hello! We use cookies to store if you selected the light or dark design and if you are logged in and if yes on what account you are logged in. If you do not agree that we use cookies please close this page.",
+  "accept": "Accept"
 }
