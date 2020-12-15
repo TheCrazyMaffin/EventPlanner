@@ -1,0 +1,49 @@
+<form action="" method="get">
+    <fieldset>
+        <legend><%= __('createEventTitle') %></legend>
+        <div class="form-group">
+            <label for="eventTitle"><%= __("eventTitle") %></label>
+            <input required type="text" class="form-control" id="exampleInputEmail1"
+                placeholder="<%= __("eventTitlePlaceholder") %>">
+        </div>
+        <div class="form-group">
+            <label for="descriptionTextarea"><%= __("eventDescription") %></label>
+            <textarea required class="form-control" id="descriptionTextarea" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="eventImage"><%= __("eventImage") %></label>
+            <input required type="file" class="form-control-file" id="eventImage" aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted"><%= __("eventImageHelp") %></small>
+        </div>
+        <div class="form-group">
+            <label for="eventMaxAtendees"><%= __("eventMaxAtendees") %></label>
+            <input required type="number" class="form-control" id="eventMaxAtendees" min="1" max="1000">
+        </div>
+        <div class="form-group">
+            <label for="eventHostSelect"><%= __("eventHostSelect") %></label>
+            <select class="form-control" multiple id="eventHostSelect">
+                <option>Donald Duck</option>
+                <option>Dagobert Duck</option>
+                <option>Trick</option>
+                <option>Tick</option>
+                <option>Track</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="eventAddDate"><%= __("eventAddDate") %></label>
+                Am: <input required type="date" class="form-control" id="eventAddDate">
+                Von: <input required type="time" class="form-control" id="evemtAddDate">TODO: USE LABELS
+                Bis: <input required type="time" class="form-control" id="evemtAddDate">
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                24.12.2020, 13:00-14:00
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                02.01.2020, 09:00-10:00
+            </li>
+        </ul>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+</form>

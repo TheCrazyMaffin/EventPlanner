@@ -10,13 +10,14 @@ if(typeof current == "undefined"){var current = 1;}
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item <%= current == 1 ? 'active' : ''; %>">
-          <a class="nav-link" href="./"><%= __('navbarHome') %>
+          <a class="nav-link" href="/"><%= __('navbarHome') %>
           </a>
         </li>
         <li class="nav-item <%= current == 2 ? 'active' : ''; %>">
-          <a class="nav-link" href="./dashboard"><%= __('navbarDashboard') %>
+          <a class="nav-link" href="/dashboard"><%= __('navbarDashboard') %>
           </a>
         </li>
       </ul>
+      <button type="button" class="btn btn-info"><%= __("signIn") %></button>
     </div>
   </nav>

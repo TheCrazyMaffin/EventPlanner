@@ -5,5 +5,15 @@
   "navbarDashboard": "Dashboard",
   "cookiePageTitle": "Cookies",
   "cookieMessage": "Hello! We use cookies to store if you selected the light or dark design and if you are logged in and if yes on what account you are logged in. If you do not agree that we use cookies please close this page.",
-  "accept": "Accept"
+  "accept": "Accept",
+  "signIn": "Sign in",
+  "createEventTitle": "Create an event",
+  "eventTitle": "Title",
+  "eventTitlePlaceholder": "Enter title",
+  "eventDescription": "Description",
+  "eventImage": "Cover image",
+  "eventImageHelp": "For optimal results use 800x400px images",
+  "eventMaxAtendees": "Maximum atendees",
+  "eventHostSelect": "Select hosts",
+  "eventAddDate": "Add date"
 }
