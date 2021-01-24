@@ -36,7 +36,7 @@
                         <textarea class="w-100" name="note" form="notesForm<%= ev.id %>"><%= ev.attendeeNotes %></textarea>
                         <button type="submit" class="btn btn-success"><%= __("save") %></button>
                     </form><br />
-                    <div class="card-footer bg-transparent border-success"></div>
+                    <div class="card-footer bg-transparent border-success">
                         <form method="post" action="/events/<%= ev.id %>/delete">
                             <button type="submit" class="btn btn-danger"><%= __("del_event") %></button>
                         </form>
