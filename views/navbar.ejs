@@ -19,6 +19,9 @@ if(typeof current == "undefined"){var current = 1;}
           </a>
         </li>
         <% } %>
+      <noscript>
+        <h1>This website doesnt work without Javascript.</h1>
+      </noscript>
       </ul>
       <% if(typeof withoutSignIn === "undefined"){ %>
         <% if(req.user !== undefined) { %>
