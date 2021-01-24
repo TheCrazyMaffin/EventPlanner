@@ -20,5 +20,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     radix: 'off',
     'max-len': 'off',
+    'no-param-reassign': 'off',
   },
 };
