@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label for="eventHostSelect"><%= __("eventHostSelect") %></label>
-            <select name="hosts" class="form-control" multiple id="eventHostSelect">
+            <select name="hosts" required class="form-control" multiple id="eventHostSelect">
                 <% for (const h of hosts){ %>
                     <option value="<%= h.id %>"><%= h.displayName %></option>
                 <% } %>
