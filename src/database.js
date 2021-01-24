@@ -203,7 +203,7 @@ async function signupEvent(eventId, userId) {
 async function delEvent(eventId) {
   const event = await getEvent(eventId);
   if (!event.imageName.includes('default')) {
-    fs.unlink(path.join(process.cwd(), '/public/images/events', event.imageName));
+    fs.unlinkSync(path.join(process.cwd(), '/public/images/events', event.imageName));
   }
   await run('DELETE FROM events WHERE id=?', [event.id]);
   await run('DELETE FROM hosts WHERE eventId=?', [event.id]);
