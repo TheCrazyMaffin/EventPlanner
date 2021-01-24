@@ -48,6 +48,15 @@
                 document.querySelector("#addEventDatesList").innerHTML = "";
                 document.querySelector("#eventAddDates").value = "";
             }
+            function submitValidate(){
+                const form = document.querySelector("#addEv");
+                const datesEl = document.querySelector("#eventAddDates")
+                if(datesEl.value === ""){
+                    return
+                }else{
+                    form.submit();
+                }
+            }
         </script>
         <div class="form-group">
             <label for="eventAddDate"><strong><%= __("eventAddDate") %></strong></label>
@@ -69,10 +78,10 @@
                     </div>
                 </div>
         </div>
-        <input type="hidden" id="eventAddDates" name="dates" value="">
+        <input type="hidden" required id="eventAddDates" name="dates" value="">
         <ul class="list-group" id="addEventDatesList">
         </ul>
         <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" onclick="submitValidate()" class="btn btn-primary">Submit</button>
     </fieldset>
 </form>
