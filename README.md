@@ -13,7 +13,7 @@
 9. Im Header kann man sich nun mit den entsprechenden Daten anmelden.
 
 ## Erklärung
-- Die Events im `Home`-Tab sind anklickbar. Wenn man angemeldet ist kann man an diesen Events teilnehmen.
+- Die Events im `Home`-Tab sind anklickbar. (Beim ersten Mal werden keine Events vorhanden sein. Diese müssen erst als Host erstellt werden) Wenn man angemeldet ist kann man an diesen Events teilnehmen.
 - Im `Dashboard`-Tab kann man als Nutzer, die Events sehen bei denen man sich eingeschrieben hat. Als Host können hier eigene Events verwaltet werden. Die Anwesenheit und Host-Notiz ist nur für Teilnehmer sichtbar.
 
 
