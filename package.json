@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Node event manager with a web interface",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheCrazyMaffin/EventPlanner.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
