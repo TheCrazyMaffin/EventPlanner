@@ -1,20 +1,3 @@
-<%# 
-Event {
-    id: PK,
-    title: String,
-    description: String,
-    imageName: String, 
-    maximumAttendees: Integer,
-    currentAttendees: Integer
-    hosts: Array[displayName: String]
-    dates: Array[date]
-}
-
-date {
-    timestampStart: timestamp,
-    timestampEnd: timestamp
-}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,21 +10,28 @@ date {
         <div class="row">
             <div class="card mb-3 mx-auto">
                 <h3 class="card-header"><%= event.title %></h3>
-                <img src="/images/<%= event.imageName %>">
+                <img src="<%= event.imageUrl %>">
                 <div class="card-body">
                     <p class="card-text"><%= event.description %></p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Betreuer (i18n): </li>
-                    <li class="list-group-item">x von X Plätzen belegt (i18n)</li>
-                    <li class="list-group-item">Wann? Dann dann und dann</li>
+                    <li class="list-group-item"><%= __("supervisors"); %> <%= event.hosts.map(h => h.displayName).join(", ") %></li>
+                    <li class="list-group-item"><%= __("space_used").replace("{x}", event.dates[0].attendees.length).replace("{y}", event.maximumAttendees) %></li>
+                    <li class="list-group-item"><%= __("dates") %>:<br />
+                        <ul>
+                            <% for(const d of event.dates){ %>
+                                <li><%= (new Date(d.start * 1000)).toLocaleString(locale) %> -> <%= (new Date(d.end * 1000)).toLocaleString(locale) %></li>
+                            <% } %>
+                        </ul>
+                    </li>
                 </ul>
+                <% if(req.user && event.dates[0].attendees.length < event.maximumAttendees && !event.dates[0].attendees.some(att => att.account.id == req.user.id)){ %>
                 <div class="card-body mx-auto">
-                        <button type="button" class="btn btn-success">Sign up</button>
+                    <form method="post" action="/events/<%= event.id %>/signup">
+                        <button type="submit" class="btn btn-success"><%= __("signupEvent") %></button>
+                    </form>
                 </div>
-                <div class="card-footer text-muted">
-                    Footer note
-                </div>
+                <% } %>
                 </div>
         </div>
     </div>

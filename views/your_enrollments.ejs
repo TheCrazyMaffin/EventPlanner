@@ -1,57 +1,29 @@
-<div class="accordion" id="accordionExample">
-    <div class="card">
-        <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#enrollmentCollapseOne"
-                    aria-expanded="true" aria-controls="CollapseOne">
-                    Collapsible Group Item #1
-                </button>
-            </h5>
-        </div>
-        <div id="enrollmentCollapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-                Some info here
+<div class="accordion" id="accordion">
+    <% for(const ev of events.filter(ev => ev.dates.some(d => d.attendees.some(a => a.account.id == req.user.id)))){ %>
+        <div class="card">
+            <div class="card-header" id="headingEn<%= ev.id %>">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#enrollmentCollapseEn<%= ev.id %>"
+                        aria-expanded="true" aria-controls="CollapseEn<%= ev.id %>">
+                        <%= ev.title %>
+                    </button>
+                </h5>
+            </div>
+            <div id="enrollmentCollapseEn<%= ev.id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <strong><%= __("supervisors"); %> </strong><%= ev.hosts.map(h => h.displayName).join(", ") %><br />
+                    <strong><%= __("dates") %>:</strong><br />
+                    <ul>
+                        <% for(const d of ev.dates){ %>
+                            <li><%= (new Date(d.start * 1000)).toLocaleString(locale) %> -> <%= (new Date(d.end * 1000)).toLocaleString(locale) %> <%= d.attendees.filter(at => at.account.id == req.user.id)[0].presence == 1 ? '✅' : '❌' %></li>
+                        <% } %>
+                    </ul>
+                    <p><strong><%= __("description") %>: </strong><%= ev.description %></p>
+                    <% if(ev.attendeeNotes != ''){ %>
+                        <p><strong><%= __("attendeeNotes") %>: </strong><%= ev.attendeeNotes %></p>
+                    <% } %>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card">
-        <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#enrollmentCollapseTwo"
-                    aria-expanded="false" aria-controls="enrollmentCollapseTwo">
-                    Collapsible Group Item #2
-                </button>
-            </h5>
-        </div>
-        <div id="enrollmentCollapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-                moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-                aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#enrollmentCollapseThree"
-                    aria-expanded="false" aria-controls="enrollmentCollapseThree">
-                    Collapsible Group Item #3
-                </button>
-            </h5>
-        </div>
-        <div id="enrollmentCollapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-            <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-                moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-                aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
-        </div>
-    </div>
+    <% } %>
 </div>

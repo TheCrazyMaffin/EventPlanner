@@ -13,11 +13,38 @@ if(typeof current == "undefined"){var current = 1;}
           <a class="nav-link" href="/"><%= __('navbarHome') %>
           </a>
         </li>
+        <% if(req.user){ %>
         <li class="nav-item <%= current == 2 ? 'active' : ''; %>">
           <a class="nav-link" href="/dashboard"><%= __('navbarDashboard') %>
           </a>
         </li>
+        <% } %>
       </ul>
-      <button type="button" class="btn btn-info"><%= __("signIn") %></button>
+      <% if(typeof withoutSignIn === "undefined"){ %>
+        <% if(req.user !== undefined) { %>
+          <span style="margin-right: 10px;"><%= __("hello") %> <%= req.user.displayName %></span>
+          <form action="/auth/logout" method="post">
+            <button type="submit" style="display: inline; width: auto;" class="btn btn-info form-control"><%= __("signOut") %></button>
+          </form>
+        <% }else{ %>        
+          <form action="/auth" method="post">
+            <input required style="display: inline; width: auto;" class="form-control" type="text" name="username" placeholder="<%= __("username") %>">
+            <input required style="display: inline; width: auto;" class="form-control"  type="password" name="password" placeholder="<%= __("password") %>">
+            <button type="submit" id="signinbtn" style="display: inline; width: auto;" class="btn btn-info form-control"><%= __("signIn") %></button>
+          </form>
+          <% if(typeof loginFailed !== 'undefined' && loginFailed){ %>
+            <script>
+              window.onload = function(){
+                document.querySelector('#signinbtn').classList.remove("btn-info");
+                document.querySelector('#signinbtn').classList.add('btn-danger');
+                setTimeout(() => {
+                  document.querySelector('#signinbtn').classList.add("btn-info");
+                document.querySelector('#signinbtn').classList.remove('btn-danger');
+                }, 1000)
+              }
+            </script>
+          <% } %>
+        <% } %>
+      <% } %>
     </div>
   </nav>

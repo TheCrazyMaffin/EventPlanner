@@ -4,13 +4,9 @@
     <%- include('header', {req, title:  __("landingPageTitle"), cookies}) %>
 </head>
 <body>
-    <%- include('navbar', { current: 1 }); %>
-    <%- include('latest-embed', {latestEvents: [//DEBUG Actually receive data at some point
-        {name: "Event name 1", image: "/images/example800x400-1.png"},
-        {name: "Event name 2", image: "/images/example800x400-2.png"},
-        {name: "Event name 3", image: "/images/example800x400-3.png"}
-    ]}); %>
+    <%- include('navbar', { current: 1, loginFailed: (typeof req.query.loginfailed === 'undefined' ? false : true) }); %>
+    <%- include('latest-embed', {latestEvents: events.slice(0, 3)}); %>
     <br />
-    <%- include('event-list', {q: req.query}) %>
+    <%- include('event-list', {q: req.query, cards: events.slice(3, events.length + 1)}) %>
 </body>
 </html>

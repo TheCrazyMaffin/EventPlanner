@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= __("landingPageTitle") %></title>
-    <% if(req.query.design == "light"){ %>
-    <%- include('design/light') %>
-    <% }else{ %>
-    <%- include('design/dark') %>
-    <% } %>
-</head>
+    <head>
+        <%- include('header', {req, title:  __("landingPageTitle"), cookies: req.session}) %>
+    </head>
 
 <body>
     <%- include('navbar', { current: 2 }); %>
@@ -20,22 +12,24 @@
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#enrollments">Your enrollments</a>
             </li>
+            <% if(req.user.host == 1) { %>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#events">Your events</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#create">Create event</a>
             </li>
+            <% } %>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active show" id="enrollments">
-                <%- include('your_enrollments'); %>
+                <%- include('your_enrollments', { events }); %>
             </div>
             <div class="tab-pane fade" id="events">
                 <%- include('your_events'); %>
             </div>
             <div class="tab-pane fade" id="create">
-                <%- include("create_event") %>
+                <%- include("create_event", { hosts, req }) %>
             </div>
         </div>
     </div>

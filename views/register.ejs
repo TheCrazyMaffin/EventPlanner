@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('header', {req, title:  __("registerPageTitle"), cookies: req.session}) %>
+    </head>
+<body>
+    <%- include('navbar', { current: 2 }); %>
+    <br />
+    <div class="container">
+      <% if(req.query.warn && req.query.warn === "usernameTaken"){ %>
+      <div class="alert alert-danger" role="alert">
+        <%= __("usernameTaken") %>
+      </div>
+      <% } %>
+      <form method="post" action="/register">
+        <div class="form-group">
+          <label for="displayName"><%= __("displayName") %></label>
+          <input type="text" maxlength="20" name="displayName" class="form-control" id="displayName" required aria-describedby="displayNameHelp" placeholder="<%= __("displayName") %>">
+          <small id="displayNameHelp" class="form-text text-muted"><%= __("displayNameHint") %></small>
+        </div>
+        <div class="form-group">
+          <label for="username"><%= __("username") %></label>
+          <input type="text" name="username" maxlength="20" class="form-control" id="username" required placeholder="<%= __("username") %>">
+        </div>
+        <div class="form-group">
+          <label for="inputPassword"><%= __("password") %></label>
+          <input type="password" name="password" maxlength="50" class="form-control" id="inputPassword" placeholder="<%= __("password") %>">
+        </div>
+        <input type="hidden" name="code" value="<%= req.params.code %>">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+</body>
+
+</html>

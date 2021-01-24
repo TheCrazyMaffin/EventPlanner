@@ -1,9 +1,9 @@
 <div class="container-fluid" style="width: 100%;">
     <div class="row">
         <% latestEvents.forEach(element => { %>
-            <div class="col-sm px-0">
-                <img class="d-block w-100" src="<%= element.image %>" alt="There should be an image here :(">
-                <h4 class="carousel-caption bg-secondary-halftransparent"><%= element.name %></h4>
+            <div class="col-sm px-0" onclick="window.location = './events/<%= element.id %>';">
+                <img class="d-block w-100" src="<%= element.imageUrl %>" alt="There should be an image here :(">
+                <h4 class="carousel-caption bg-secondary-halftransparent"><%= element.title %></h4>
             </div>
         <% }) %>
     </div>

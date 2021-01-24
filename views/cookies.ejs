@@ -4,7 +4,7 @@
     <%- include('header', {req, title:  __("cookiePageTitle"), cookies: req.session}) %>
 </head>
 <body>
-    <%- include('navbar', { current: 0 }); %>
+    <%- include('navbar', { current: 0, withoutSignIn: true }); %>
     <p><%= __("cookieMessage") %></p>
     <form action="./">
         <input type="hidden" name="cookies" value="1">

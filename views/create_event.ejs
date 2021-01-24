@@ -1,47 +1,76 @@
-<form action="" method="get">
+<form action="/events/create" method="post" id="addEv" enctype="multipart/form-data">
     <fieldset>
         <legend><%= __('createEventTitle') %></legend>
         <div class="form-group">
             <label for="eventTitle"><%= __("eventTitle") %></label>
-            <input required type="text" class="form-control" id="exampleInputEmail1"
+            <input required type="text" class="form-control" id="eventTitle" name="title"
                 placeholder="<%= __("eventTitlePlaceholder") %>">
         </div>
         <div class="form-group">
             <label for="descriptionTextarea"><%= __("eventDescription") %></label>
-            <textarea required class="form-control" id="descriptionTextarea" rows="3"></textarea>
+            <textarea required class="form-control" id="descriptionTextarea" form="addEv" name="description" rows="3"></textarea>
         </div>
         <div class="form-group">
             <label for="eventImage"><%= __("eventImage") %></label>
-            <input required type="file" class="form-control-file" id="eventImage" aria-describedby="fileHelp">
+            <input required name="image" type="file" class="form-control-file" accept=".png,.jpeg,.jpg,.gif" id="eventImage" aria-describedby="fileHelp">
             <small id="fileHelp" class="form-text text-muted"><%= __("eventImageHelp") %></small>
         </div>
         <div class="form-group">
             <label for="eventMaxAtendees"><%= __("eventMaxAtendees") %></label>
-            <input required type="number" class="form-control" id="eventMaxAtendees" min="1" max="1000">
+            <input required type="number" name="maximumAttendees" class="form-control" id="eventMaxAtendees" min="1" max="1000">
         </div>
         <div class="form-group">
             <label for="eventHostSelect"><%= __("eventHostSelect") %></label>
-            <select class="form-control" multiple id="eventHostSelect">
-                <option>Donald Duck</option>
-                <option>Dagobert Duck</option>
-                <option>Trick</option>
-                <option>Tick</option>
-                <option>Track</option>
+            <select name="hosts" class="form-control" multiple id="eventHostSelect">
+                <% for (const h of hosts){ %>
+                    <option value="<%= h.id %>"><%= h.displayName %></option>
+                <% } %>
             </select>
         </div>
+        <script>
+            function addDate(){
+                const startDateEl = document.querySelector("#eventAddDateStart");
+                const startTimeEl = document.querySelector("#eventAddTimeStart");
+                const endDateEl = document.querySelector("#eventAddDateEnd");
+                const endTimeEl = document.querySelector("#eventAddTimeEnd");
+                if([startDateEl.value, startTimeEl.value, endDateEl.value, endTimeEl.value].includes("")){
+                    return;
+                }
+
+                let start = new Date(`${startDateEl.value} ${startTimeEl.value}`);
+                let end = new Date(`${endDateEl.value} ${endTimeEl.value}`);
+                const hiddenStorage = document.querySelector("#eventAddDates");
+                hiddenStorage.value += `${start.valueOf()}-${end.valueOf()},`
+                document.querySelector("#addEventDatesList").innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-center">${start.toLocaleString("<%=req.locale %>")} --> ${end.toLocaleString("<%=req.locale %>")}</li>`
+            }
+
+            function clearDates(){
+                document.querySelector("#addEventDatesList").innerHTML = "";
+                document.querySelector("#eventAddDates").value = "";
+            }
+        </script>
         <div class="form-group">
-            <label for="eventAddDate"><%= __("eventAddDate") %></label>
-                Am: <input required type="date" class="form-control" id="eventAddDate">
-                Von: <input required type="time" class="form-control" id="evemtAddDate">TODO: USE LABELS
-                Bis: <input required type="time" class="form-control" id="evemtAddDate">
+            <label for="eventAddDate"><strong><%= __("eventAddDate") %></strong></label>
+                <div class="form-row">
+                    <div class="col">
+                        <%= __("startingAt") %>
+                        <input required type="date" class="form-control" id="eventAddDateStart">
+                        <input required type="time" class="form-control" id="eventAddTimeStart">
+                    </div>
+                    <div class="col">
+                        <%= __("endingAt") %>
+                        <input required type="date" class="form-control" id="eventAddDateEnd">
+                        <input required type="time" class="form-control" id="eventAddTimeEnd">
+                    </div>
+                    <div class="col">
+                        <br/>
+                        <button type="button" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;" onclick="addDate()" class="btn btn-secondary mx-auto w-100"><%= __("add") %></button>
+                        <button type="button" style="border-top-left-radius: 0px; border-top-right-radius: 0px;" onclick="clearDates()" class="btn btn-danger mx-auto w-100"><%= __("clear") %></button>
+                    </div>
+                </div>
         </div>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                24.12.2020, 13:00-14:00
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                02.01.2020, 09:00-10:00
-            </li>
+        <input type="hidden" id="eventAddDates" name="dates" value="">
+        <ul class="list-group" id="addEventDatesList">
         </ul>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
