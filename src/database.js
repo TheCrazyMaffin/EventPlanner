@@ -216,6 +216,9 @@ async function delEvent(eventId) {
 async function createEvent(title, description, imageName, maximumAttendees, hosts, dates) {
   await run('INSERT INTO events (title, description, imageName, maximumAttendees) VALUES (?, ?, ?, ?)', [title, description, imageName, parseInt(maximumAttendees)]);
   const eventRaw = await query('SELECT id FROM events ORDER BY id DESC LIMIT 1');
+  if (typeof hosts === 'string') {
+    hosts = [hosts];
+  }
   for (const h of hosts) {
     await run('INSERT INTO hosts (eventId, accountId) VALUES (?, ?)', [parseInt(eventRaw.id), parseInt(h)]);
   }
