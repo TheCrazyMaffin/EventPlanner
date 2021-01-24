@@ -20,7 +20,7 @@ require('dotenv').config();
 i18n.configure({
   locales: ['en', 'de'],
   directory: path.join(__dirname, 'locales'),
-  defaultLocale: 'en',
+  defaultLocale: process.env.LANG.toLowerCase(),
   retryInDefaultLocale: true,
   queryParameter: 'lang', // Language can be changed by adding ?lang=xy
   autoReload: true,
@@ -113,5 +113,5 @@ server.on('listening', () => {
   const addr = server.address();
   // Get either a pipe or port to display
   const binding = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-  console.log(`Listening on ${binding}`);
+  console.log(`Listening on ${binding} with default language ${process.env.LANG.toLowerCase()}`);
 });
