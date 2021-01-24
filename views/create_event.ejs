@@ -48,12 +48,23 @@
                 document.querySelector("#addEventDatesList").innerHTML = "";
                 document.querySelector("#eventAddDates").value = "";
             }
-            function submitValidate(){
+            function submitValidate(button){
                 const form = document.querySelector("#addEv");
                 const datesEl = document.querySelector("#eventAddDates")
                 if(datesEl.value === ""){
-                    return
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-danger');
+                    setTimeout(() => {
+                        button.classList.add('btn-primary')
+                        button.classList.remove('btn-danger')
+                    }, 1000);
                 }else{
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-success');
+                    setTimeout(() => {
+                        button.classList.add('btn-primary')
+                        button.classList.remove('btn-success')
+                    }, 1000);
                     form.submit();
                 }
             }
@@ -82,6 +93,6 @@
         <ul class="list-group" id="addEventDatesList">
         </ul>
         <br>
-        <button type="button" onclick="submitValidate()" class="btn btn-primary">Submit</button>
+        <button type="button" onclick="submitValidate(this)" class="btn btn-primary">Submit</button>
     </fieldset>
 </form>
