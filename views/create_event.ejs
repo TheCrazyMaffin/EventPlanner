@@ -51,6 +51,9 @@
             function submitValidate(button){
                 const form = document.querySelector("#addEv");
                 const datesEl = document.querySelector("#eventAddDates")
+                if(!form.reportValidity()){
+                    return
+                }
                 if(datesEl.value === ""){
                     button.classList.remove('btn-primary');
                     button.classList.add('btn-danger');
